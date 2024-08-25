@@ -1,0 +1,73 @@
+<style>
+li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+p.auther {
+color:#00FF00;
+}
+ 
+
+* {box-sizing: border-box;}
+form {
+  position: relative;
+  width: 350px;
+  margin: 20 auto;
+}
+input, button {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+input {
+  width: 100%;
+  height: 42px;
+  background: #F9F0DA;
+  padding-left: 15px;
+}
+button {
+  height: 32px;
+  width: 36px;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: #F15B42;
+  cursor: pointer;
+}
+button:before {
+  content: "\270C";
+  font-family: FontAwesome;
+  color: #F9F0DA;
+  font-size: 20px;
+  font-weight: bold;
+}
+ 
+</style>  
+{% extends "Posts/base.html" %}
+{% block content %}
+
+<form action = "{% url 'Posts:search' %}"   method  ='get'  >
+{% csrf_token %}
+{{ form.as_p }}
+<input  name="q"  type="text" required placeholder="Поиск по записям ..." >
+<button  name ="submit" ></button>
+</form>
+
+<p>
+
+{% for article in text %}
+<ul>
+<nav class="one">
+<li>
+<hr>
+<p>Тема: <a href="{% url 'Posts:topic' article.topic.id %}"> {{ article.topic  }} </a>    </p>
+<p>Запись: {{ article|linebreaks  }}    </p>   
+<p class="auther">Пользователь : {{ article.user.first_name  }}    </p>   
+
+</li>
+</ul>
+</nav>
+{% endfor %}
+
+ </p>
+
+{% endblock content %}

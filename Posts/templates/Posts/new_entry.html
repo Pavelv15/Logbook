@@ -1,0 +1,14 @@
+﻿{% extends "Posts/base.html" %}
+
+{% block content %}
+
+<p><a href = "{% url 'Posts:topic' topic.id %}">{{ topic }}</a></p>
+
+<p>Новая запись:</p>
+<form action = "{% url 'Posts:new_entry' topic.id %}" method='post'>
+{% csrf_token %}
+{{ form.as_p }}
+<button name='submit'>Добавить</button>
+</form>
+
+{% endblock content %}

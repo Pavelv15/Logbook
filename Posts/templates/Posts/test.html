@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Test</title>
+</head>
+<body>
+<h1 align="center">Тестовая страница</h1>
+<form method="POST" action="{% url  'Posts:upload_test'  %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="file" name="filename" style="width:400px">
+<input type="submit" value="Загрузить">
+</form>
+</body>
+</html>

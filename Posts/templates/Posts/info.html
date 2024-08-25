@@ -1,0 +1,18 @@
+{% extends "Posts/base.html" %}
+{% block content %}
+<div>
+Проект сделан на фреймворке Django 2.2.6<br>
+Проект развёрнут на n7701-std332 с использование веб-сервера IIS + модуль wfastcgi<br>
+Размещение проекта : D:\Site<br>
+Управление проектом : "D:\Site\manage.py"<br>
+Главный каталог проекта : "D:\Site\Logbook"<br>
+Приложение для создания и редактирования тем и записей : "D:\Site\Posts"<br>
+Приложение авторизации,смены пароля и выхода из сайта : "D:\Site\users"<br>
+Путь к логам : D:\Site\Logs\LogsFile\W3SVC1"<br>
+Скрипт выполнения селекта к БД :"D:\Site\SelectBD.py"<br>
+БД: "D:\Site\db.sqlite3"<br>
+</div>
+<div>
+<a   href = "{% url 'Posts:test' %}">Тестовая сраница для проверки нового функционала</a>
+</div>
+{% endblock content %}

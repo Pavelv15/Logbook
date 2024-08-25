@@ -1,0 +1,12 @@
+﻿{% extends "Posts/base.html" %}
+{% block content %}
+<p><a href="{% url 'Posts:topic' topic.id %}"> {{ topic }}</a></p>
+<p>Изменение записи:</p>
+<form action = "{% url  'Posts:edit_entry' entry.id  %}" method = 'post'>
+{% csrf_token %}
+{{ form.as_p }}
+<button name='submit'>Изменить</button>
+</form>
+
+{% endblock content %}
+

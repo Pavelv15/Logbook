@@ -1,0 +1,103 @@
+﻿
+<title>Информационный стенд</title>
+<head>
+
+ 
+</head>
+<style type="text/css">
+body {margin:0;}
+
+
+.menu-copyright {
+  list-style: none;
+  font-size: 10px;
+table-layout: fixed;
+  
+display: inline-block;
+position: relative;
+left: 6%;
+transform: translateX(-50%);
+}
+a.test {
+  text-decoration: none; /*убираем подчеркивание текста ссылок*/
+  background:#ff6600; /*добавляем фон к пункту меню*/
+  color:#fff; /*меняем цвет ссылок*/
+  padding:10px; /*добавляем отступ*/
+  box-sizing: 10px | 10px;
+  
+  font-family: arial; /*меняем шрифт*/
+  border-radius:4px; /*добавляем скругление*/
+  -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+  -o-transition: all 0.3s 0.01s ease;
+  -webkit-transition: all 0.3s 0.01s ease;
+  table-layout: fixed;
+}
+a.test:hover {
+  background:#1C85BB;/*добавляем эффект при наведении*/
+}
+li.test {
+  float:left; /*Размещаем список горизонтально для реализации меню*/
+  margin-right:5px; /*Добавляем отступ у пунктов меню*/
+  table-layout: fixed;
+  
+}
+
+body {
+background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
+color :#A9A9A9;
+}
+a {font-size:16px; color:#ff6600; font-weight:bold}
+a:hover {font-size:16px; color:#ff0000; font-weight:bold}
+
+
+
+.head-a {
+text-align:right;
+
+
+}
+.head-a a {
+display:inline-block;
+padding:3px;
+}
+
+</style>
+
+
+
+<div align='center'> 
+
+</p>
+{% if user.is_authenticated %}
+
+<div class="head-a" >
+<a href="{% url 'users:edit'   %}">  Мой Профиль </a>
+
+<a href = "{% url 'users:logout' %}">Выйти</a>
+
+</div>
+
+Привет,&nbsp;{{ user.last_name }} {{ user.first_name }}
+
+</p>
+
+</div> 
+
+
+<div align='center'>
+<ul class="menu-copyright">
+<li class="test"><a  class="test" href = "{% url 'Posts:index' %}">Главная</a></li>
+<li class="test"><a  class ="test" href = "{% url 'Posts:topics' %}">Темы</a></li>
+<li class="test"><a  class ="test" href = "{% url 'Posts:history' %}">История</a></li>
+</ul>
+</div>
+
+
+
+{% else %}
+<a href = "{% url 'users:login' %}">Авторизация</a>
+{% endif %}
+
+</p>
+{% block content %}{% endblock content %}

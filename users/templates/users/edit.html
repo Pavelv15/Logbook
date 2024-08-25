@@ -1,0 +1,48 @@
+{% extends "Posts/base.html" %}
+
+{% block title %}Edit your account{% endblock %}
+
+
+{% block content %}
+<style>
+a.button {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: .5em 3.1em;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+} 
+a.button:hover { background: rgba(255,255,255,.2); }
+a.button:active { background: white; }
+input.button1 {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: .75em 2em;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+  background-color: rgba(0,0,0,0);
+
+} 
+input.button1:hover { background: rgba(255,255,255,.2); }
+input.button1:active { background: white; }
+</style>
+    <h1>Изменение аккаунта</h1>
+    
+    <form action="." method="post" enctype="multipart/form-data">
+        {{ user_form.as_p }}
+		{{ profile_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Сохранить изменения" class="button1"></p>
+    </form>
+<a href = "{% url 'users:password_reset_confirm' %}" class="button">Смена пароля</a>
+{% endblock %}

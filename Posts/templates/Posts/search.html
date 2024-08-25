@@ -1,0 +1,89 @@
+{% extends "Posts/base.html" %}
+{% block content %}
+<style>
+
+ li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+
+p.search {
+color:orange;
+}
+p.result {
+color:#00FF00;
+}
+.fire {
+    color: #fff;
+    text-shadow:
+             0 0 2px #eee,
+             0 0 4px #fff,
+             0 -2px 4px #ff3,
+             2px -4px 6px #fd3,
+             -2px -6px 11px #f80,
+             2px -8px 18px #f20;
+    font-size: 60px;
+}
+
+  
+
+* {box-sizing: border-box;}
+form {
+  position: relative;
+  width: 350px;
+  margin: 20 auto;
+}
+input, button {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+input {
+  width: 100%;
+  height: 42px;
+  background: #F9F0DA;
+  padding-left: 15px;
+}
+button {
+  height: 32px;
+  width: 36px;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: #F15B42;
+  cursor: pointer;
+}
+button:before {
+  content: "\270C";
+  font-family: FontAwesome;
+  color: #F9F0DA;
+  font-size: 20px;
+  font-weight: bold;
+}
+  
+</style>
+<form action = "{% url 'Posts:search' %}"   method  ='get'  >
+{% csrf_token %}
+{{ form.as_p }}
+<input  name="q"  type="text" required placeholder="Поиск по записям ..." >
+<button  name ="submit" ></button>
+</form>
+
+<p align='center' class='search'><b>РЕЗУЛЬТАТ ПОИСКА</b></p>
+
+<ul>
+{% if object_list %}
+  {% for entry in object_list %}
+  
+  <hr>
+  <p class='result'>Тема:  <a href="{% url 'Posts:topic' entry.topic.id %}"> {{ entry.topic  }}   </a>  </p>
+    <li>
+      {{ entry.text|linebreaks }}
+	  
+    </li>
+	
+  {% endfor %}
+{% else %}
+<h1 align="center" class='fire'>Ничего не найдено</h1>
+{% endif %}
+</ul>
+{% endblock content %}
